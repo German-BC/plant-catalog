@@ -1,0 +1,32 @@
+# Cabal build artifacts
+dist/
+dist-newstyle/
+cabal.project.local
+*.hi
+*.o
+*.dyn_o
+*.dyn_hi
+
+# Executables
+*.exe
+*.out
+
+# Cabal sandbox 
+.cabal-sandbox/
+cabal.sandbox.config
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Logs
+*.log
+
+# Misc
+.tags
+*.swp
+*.bak
+*~
+
+# Stack 
+.stack-work/
