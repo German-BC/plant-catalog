@@ -44,8 +44,6 @@ maintainer:         gbejarano1@unm.edu
 -- copyright:
 build-type:         Simple
 
---build-depends: base, brillo
-
 -- Extra doc files to be distributed with the package, such as a CHANGELOG or a README.
 extra-doc-files:    CHANGELOG.md
 
