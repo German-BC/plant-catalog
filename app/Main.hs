@@ -2,12 +2,14 @@
 
 module Main where
 
-import Brillo
+import BrilloMain
 
 main :: IO()
 
-main = display
-  (InWindow "Window Title" (800, 600) (10, 10))
-  yellow
-  (Circle 125)
+main = run
+
+-- main = display
+--   (InWindow "Window Title" (800, 600) (10, 10))
+--   yellow
+--   (Circle 125)
 
