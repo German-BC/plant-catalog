@@ -11,8 +11,8 @@ import Plant
 -- Converting a Plant to Picture
 plantToPicture :: Float -> Int -> Int -> Plant -> Picture 
 plantToPicture yOffset selected index plant = 
-    let textColor = if index == selected then brownish else darkGreen 
-    in translate (-200) (yOffset - fromIntegral index * 50) $
+    let textColor = if index == selected then magenta else darkGreen 
+    in translate (-200) (yOffset - fromIntegral index * 75) $
     color textColor $
     scale 0.15 0.15 $ 
     text (commonName plant)
@@ -21,6 +21,30 @@ plantToPicture yOffset selected index plant =
 plantsToPicture :: Int -> [Plant] -> Picture 
 plantsToPicture selected plants = 
     pictures (zipWith (plantToPicture 250 selected) [0..] plants)
+
+-- Draw selected plant details
+detailsToPicture :: Plant -> Picture 
+detailsToPicture plant = 
+    translate 10 200 $ 
+    scale 0.15 0.15 $ 
+    color brownish $ 
+    pictures 
+        [
+            translate 0 0 (text ("Common Name: " ++ commonName plant)),
+            translate 0 (-200) (text ("Botanical Name: " ++ botanicalName plant)),
+            translate 0 (-400) (text ("Sun Needs: " ++ sunNeed plant)),
+            translate 0 (-600) (text ("Water Use: " ++ waterNeed plant)),
+            translate 0 (-800) (text ("Blooming Time: " ++ bloomTime plant))
+        ]
+
+-- Main draw function
+draw :: (Int, [Plant]) -> Picture 
+draw (selected, plants) = 
+    pictures 
+    [
+        translate (-150) 0 (plantsToPicture selected plants),
+        detailsToPicture (plants !! selected)
+    ]
 
 -- Key input event handler
 handleInput :: Event -> (Int, [Plant]) -> (Int, [Plant])
@@ -34,9 +58,9 @@ handleInput _ state = state
 step :: Float -> (Int, [Plant]) -> (Int, [Plant])
 step _ state = state 
 
--- Current state 
-draw :: (Int, [Plant]) -> Picture 
-draw (selected, plants) = plantsToPicture selected plants 
+-- -- Current state 
+-- draw :: (Int, [Plant]) -> Picture 
+-- draw (selected, plants) = plantsToPicture selected plants 
 
 -- Color definitions
 beige :: Color
